@@ -1,122 +1,112 @@
-# D92W.github.io<!DOCTYPE html><html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>موقع المنصوري لتعليم بايثون</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Tahoma', sans-serif;
-      background-color: #000;
-      color: #0f0;
-    }
-    .login-page, .main-page {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-    input {
-      padding: 10px;
-      margin: 10px;
-      border-radius: 8px;
-      border: none;
-      font-size: 16px;
-      background-color: #111;
-      color: #0f0;
-    }
-    button {
-      padding: 10px 20px;
-      background-color: #900;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    .hidden { display: none; }
-    .content {
-      padding: 30px;
-      background: #111;
-      border-radius: 16px;
-      max-width: 900px;
-      margin: auto;
-      box-shadow: 0 0 30px red;
-    }
-    h1, h2 { color: #f00; }
-    .footer {
-      margin-top: 30px;
-      font-size: 14px;
-      color: #888;
-      text-align: center;
-    }
-    a { color: #0f0; text-decoration: none; }
-    .video-box, .lesson-img {
-      margin: 20px 0;
-      border: 2px solid #0f0;
-      border-radius: 12px;
-      padding: 10px;
-      background: #000;
-    }
-    .dashboard {
-      background: #111;
-      padding: 20px;
-      margin-top: 30px;
-      border: 2px dashed #0f0;
-      border-radius: 12px;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>موقع تعليم بايثون مع لوحة تحكم</title>
+<style>
+  body { background: #000; color: #0f0; font-family: 'Tahoma', sans-serif; margin:0; padding:0; }
+  header { background: #300; padding: 15px; text-align: center; color: #f00; font-size: 24px; }
+  main { max-width: 900px; margin: 20px auto; padding: 10px; }
+  .lesson { border: 2px solid #0f0; padding: 10px; margin-bottom: 20px; border-radius: 8px; background: #111; }
+  .lesson img, video { max-width: 100%; border-radius: 8px; }
+  .dashboard { background: #111; padding: 15px; border-radius: 12px; box-shadow: 0 0 15px #0f0; margin-bottom: 30px; }
+  label { display: block; margin: 8px 0 4px; }
+  input[type=text], textarea { width: 100%; padding: 8px; border-radius: 6px; border: none; background: #222; color: #0f0; }
+  button { background: #900; color: #fff; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; margin-top: 10px; }
+  button:hover { background: #c00; }
+  .btn-delete { background: #400; }
+  .btn-delete:hover { background: #a00; }
+</style>
 </head>
 <body>
-  <div class="login-page" id="login-page">
-    <h1>تسجيل دخول</h1>
-    <input type="text" id="username" placeholder="أي اسم مستخدم">
-    <input type="password" id="password" placeholder="أي كلمة سر">
-    <button onclick="login()">دخول</button>
-  </div>  <div class="main-page hidden" id="main-page">
-    <div class="content">
-      <h1>🌟 كورس بايثون الكامل مع المنصوري</h1>
-      <p>تعلم لغة البرمجة بايثون خطوة بخطوة مع فيديوهات وصور ودروس.</p><h2>📹 فيديو تعليمي:</h2>
-  <div class="video-box">
-    <video controls width="100%">
-      <source src="video1.mp4" type="video/mp4">
-      متصفحك لا يدعم تشغيل الفيديو.
-    </video>
-  </div>
 
-  <h2>📘 درس 1: طباعة نص</h2>
-  <pre style="background:#000; padding: 10px; color: #0f0; border-radius: 8px;">print("مرحبا بك في عالم بايثون")</pre>
+<header>موقع تعليم بايثون - لوحة تحكم</header>
 
-  <h2>📷 صورة توضيحية:</h2>
-  <div class="lesson-img">
-    <img src="python_intro.png" alt="مقدمة بايثون" style="width:100%; border-radius: 8px;">
-  </div>
+<main>
 
-  <h2>📬 تواصل مع المالك</h2>
-  <p>للحصول على التعليمات أو التحدث مع الأدمن، راسل <a href="https://t.me/D9_2W">@D9_2W</a> عبر تيليجرام</p>
+<section class="dashboard">
+  <h2>لوحة التحكم</h2>
+  <form id="lessonForm">
+    <label for="title">عنوان الدرس:</label>
+    <input type="text" id="title" required />
+    
+    <label for="content">شرح الدرس:</label>
+    <textarea id="content" rows="4" required></textarea>
+    
+    <label for="video">رابط الفيديو (يوتيوب أو رابط مباشر):</label>
+    <input type="text" id="video" placeholder="https://..." />
+    
+    <label for="image">رابط الصورة (اختياري):</label>
+    <input type="text" id="image" placeholder="https://..." />
+    
+    <button type="submit">إضافة درس جديد</button>
+  </form>
+</section>
 
-  <div class="dashboard">
-    <h3>🛠️ لوحة تحكم الأدمن</h3>
-    <ul>
-      <li>➕ إضافة دروس جديدة</li>
-      <li>📤 رفع فيديوهات</li>
-      <li>🖼️ رفع صور تعليمية</li>
-      <li>📬 مراجعة الرسائل القادمة من الزوار</li>
-    </ul>
-    <p>⚠️ فقط الأدمن لديه حق الدخول الكامل إلى إدارة المحتوى.</p>
-  </div>
+<section id="lessonsContainer">
+  <h2>الدروس الحالية</h2>
+  <!-- الدروس تظهر هنا -->
+</section>
 
-  <div class="footer">
-    🔒 الموقع بإدارة <strong>الــمـنصوري DF</strong> <br>
-    تيليجرام: <a href="https://t.me/D9_2W">@D9_2W</a> | جميع الحقوق محفوظة
-  </div>
-</div>
+</main>
 
-  </div>  <script>
-    function login() {
-      document.getElementById("login-page").classList.add("hidden");
-      document.getElementById("main-page").classList.remove("hidden");
-    }
-  </script></body>
-</html>![Screenshot_٢٠٢٥-٠٦-٢١-٢٢-١٥-٥٦-٣٣٥_com termux](https://github.com/user-attachments/assets/3ddc9ff9-5aea-4da9-99d2-ca1efce901f6)
+<script>
+// جلب الدروس من التخزين المحلي
+function loadLessons() {
+  const lessons = JSON.parse(localStorage.getItem('lessons') || '[]');
+  const container = document.getElementById('lessonsContainer');
+  container.innerHTML = '<h2>الدروس الحالية</h2>';
+  
+  lessons.forEach((lesson, index) => {
+    const lessonDiv = document.createElement('div');
+    lessonDiv.className = 'lesson';
+    lessonDiv.innerHTML = `
+      <h3>${lesson.title}</h3>
+      <p>${lesson.content}</p>
+      ${lesson.video ? `<video controls src="${lesson.video}"></video>` : ''}
+      ${lesson.image ? `<img src="${lesson.image}" alt="صورة الدرس">` : ''}
+      <button class="btn-delete" onclick="deleteLesson(${index})">حذف الدرس</button>
+    `;
+    container.appendChild(lessonDiv);
+  });
+}
+
+// حفظ درس جديد
+document.getElementById('lessonForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const title = document.getElementById('title').value.trim();
+  const content = document.getElementById('content').value.trim();
+  const video = document.getElementById('video').value.trim();
+  const image = document.getElementById('image').value.trim();
+  
+  if (!title || !content) {
+    alert('الرجاء تعبئة العنوان والشرح');
+    return;
+  }
+  
+  const lessons = JSON.parse(localStorage.getItem('lessons') || '[]');
+  lessons.push({ title, content, video, image });
+  localStorage.setItem('lessons', JSON.stringify(lessons));
+  
+  // تنظيف النموذج
+  e.target.reset();
+  
+  // إعادة تحميل الدروس
+  loadLessons();
+});
+
+// حذف درس
+function deleteLesson(index) {
+  const lessons = JSON.parse(localStorage.getItem('lessons') || '[]');
+  lessons.splice(index, 1);
+  localStorage.setItem('lessons', JSON.stringify(lessons));
+  loadLessons();
+}
+
+// تحميل الدروس عند فتح الصفحة
+loadLessons();
+</script>
+
+</body>
+</html>
